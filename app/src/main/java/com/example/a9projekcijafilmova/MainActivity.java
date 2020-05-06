@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.a9projekcijafilmova.dialog.AboutDialog;
 import com.example.a9projekcijafilmova.net.MyService;
 import com.example.a9projekcijafilmova.net.model1.Search;
 import com.example.a9projekcijafilmova.net.model1.SearchRezult;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.OnI
     private RelativeLayout drawerPane;
     private ActionBarDrawerToggle drawerToggle;
 
+    private AlertDialog dialog;
 
 
     @Override
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.OnI
                         break;
                     case 2:
                         title = "About";
+                        showDialog();
                         break;
 
                 }
@@ -150,6 +153,16 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.OnI
         }
     }
 
+    private void showDialog() {
+        if (dialog == null) {
+            dialog = new AboutDialog( MainActivity.this ).prepareDialog();
+        } else {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        }
+        dialog.show();
+    }
 
     private void getMovieByName(String name) {
         Map<String, String> query = new HashMap<>();
