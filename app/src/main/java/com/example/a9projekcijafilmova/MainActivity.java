@@ -12,6 +12,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -153,6 +155,26 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.OnI
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.menu, menu );
+        return super.onCreateOptionsMenu( menu );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.omiljeni_lista:
+                startActivity( new Intent( this, OmiljeniActivity.class ) );
+                break;
+
+            case R.id.settings:
+                startActivity( new Intent( this, SettingsActivity.class ) );
+                break;
+        }
+
+        return super.onOptionsItemSelected( item );
+    }
     private void showDialog() {
         if (dialog == null) {
             dialog = new AboutDialog( MainActivity.this ).prepareDialog();

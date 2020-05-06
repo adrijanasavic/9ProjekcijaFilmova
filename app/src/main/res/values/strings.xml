@@ -6,4 +6,6 @@
     <string name="toast_key">toast_setings</string>
     <string name="notif_key">notif_setings</string>
     <string name="movie_name">Unesite ime filma</string>
+    <string name="omiljeni">Omiljeni filmovi</string>
+    <string name="settings">Settings</string>
 </resources>
