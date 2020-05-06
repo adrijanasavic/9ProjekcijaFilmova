@@ -26,7 +26,7 @@ public class SplashScreen extends AppCompatActivity {
 
         prefs = PreferenceManager.getDefaultSharedPreferences( this );
 
-        splashTime = prefs.getString( getString( R.string.splashtime_key ), "3000" );
+        splashTime = prefs.getString( getString( R.string.splashtime_key ), "5000" );
 
         splash = prefs.getBoolean( getString( R.string.splash_key ), true );// false
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="obavestavanje"
+        android:title="Nacin obavestavanja">
+
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/toast_key"
+            android:summary="Prikaz poruka putem Toast poruka"
+            android:title="Toast poruke" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/notif_key"
+            android:summary="Prikaz poruka putem Notifikacione linije"
+            android:title="Notifikacije" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="splash_category"
+        android:title="Splash screen">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/splash_key"
+            android:summary="Prikazivanje splash screen-a pri paljenju aplikacije"
+            android:title="Splash screen" />
+        <ListPreference
+            android:defaultValue="1"
+            android:dependency="@string/splash_key"
+            android:dialogTitle="Vreme trajanja splash screen-a"
+            android:entries="@array/pref_splashtime_entries"
+            android:entryValues="@array/pref_splashtime_values"
+            android:key="@string/splashtime_key"
+            android:summary="trajanje"
+            android:title="Vreme trajanja splash screen-a" />
+
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

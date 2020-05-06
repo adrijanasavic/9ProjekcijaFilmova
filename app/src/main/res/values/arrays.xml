@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+    <string-array name="pref_splashtime_entries">
+
+        <item>0.5 sec</item>
+
+        <item>1 sec</item>
+
+        <item>2 sec</item>
+
+        <item>5 sec</item>
+
+    </string-array>
+
+
+
+    <string-array name="pref_splashtime_values">
+
+        <item>500</item>
+
+        <item>1000</item>
+
+        <item>2000</item>
+
+        <item>5000</item>
+
+    </string-array>
+
+</resources>
