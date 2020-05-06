@@ -5,4 +5,5 @@
     <string name="splash_key">splash_settings</string>
     <string name="toast_key">toast_setings</string>
     <string name="notif_key">notif_setings</string>
+    <string name="movie_name">Unesite ime filma</string>
 </resources>
