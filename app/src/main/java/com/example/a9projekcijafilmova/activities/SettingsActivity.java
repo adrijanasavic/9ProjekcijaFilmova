@@ -1,4 +1,4 @@
-package com.example.a9projekcijafilmova;
+package com.example.a9projekcijafilmova.activities;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -6,6 +6,8 @@ import android.preference.PreferenceFragment;
 import android.view.MenuItem;
 
 import androidx.core.app.NavUtils;
+
+import com.example.a9projekcijafilmova.R;
 
 public class SettingsActivity extends PreferenceActivity {
     @Override

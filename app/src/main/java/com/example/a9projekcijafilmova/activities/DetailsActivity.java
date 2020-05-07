@@ -1,4 +1,4 @@
-package com.example.a9projekcijafilmova;
+package com.example.a9projekcijafilmova.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,11 +20,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.a9projekcijafilmova.R;
 import com.example.a9projekcijafilmova.db.DatabaseHelper;
 import com.example.a9projekcijafilmova.db.model.Filmovi;
 import com.example.a9projekcijafilmova.net.MyService;
@@ -61,6 +66,10 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView nagrada;
     private TextView rezija;
     private TextView budzet;
+
+
+    private TimePicker vremePicker;
+    private EditText cenaEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -91,6 +100,7 @@ public class DetailsActivity extends AppCompatActivity {
                     detalji = response.body();
                     if (detalji != null) {
                         fillData( detalji );
+                        add();
 
                     }
                 }
@@ -139,8 +149,21 @@ public class DetailsActivity extends AppCompatActivity {
                 budzet = findViewById( R.id.detalji_budzet );
                 budzet.setText( detalji.getBoxOffice() );
 
+                vremePicker = findViewById( R.id.details_picker );
+                cenaEdit = findViewById( R.id.details_cena );
+
+
             }
 
+            public void add(){
+                ImageButton add = findViewById( R.id.add );
+                add.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addFilm();
+                    }
+                } );
+            }
             @Override
             public void onFailure(Call<Detail> call, Throwable t) {
                 Toast.makeText( DetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT ).show();
@@ -195,36 +218,45 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void addFilm() {
+        if (cenaEdit.getText().toString().isEmpty()) {
+            Toast.makeText( this, "Morate upisati cenu karte", Toast.LENGTH_LONG ).show();
 
-        Filmovi film = new Filmovi();
-        film.setmNaziv( detalji.getTitle() );
-        film.setmGodina( detalji.getYear() );
-        film.setmImage( detalji.getPoster() );
-        film.setmImdbId( detalji.getImdbID() );
+        } else {
+            Filmovi film = new Filmovi();
+            film.setmNaziv( detalji.getTitle() );
+            film.setmGodina( detalji.getYear() );
+            film.setmImage( detalji.getPoster() );
+            film.setmImdbId( detalji.getImdbID() );
 
-        try {
-            getDataBaseHelper().getFilmoviDao().create( film );
+            String vreme = vremePicker.getCurrentHour() + ":" + vremePicker.getCurrentMinute() + "h";
+            String cena = cenaEdit.getText().toString() + "din";
 
-            String tekstNotifikacije = film.getmNaziv() + " je uspesno dodat na repertoar omiljenih filmova!";
+            film.setmCena( cena );
+            film.setmVreme( vreme );
 
-            boolean toast = prefs.getBoolean( getString( R.string.toast_key ), false );
-            boolean notif = prefs.getBoolean( getString( R.string.notif_key ), false );
+            try {
+                getDataBaseHelper().getFilmoviDao().create( film );
+
+                String tekstNotifikacije = film.getmNaziv() + " je uspesno dodat na repertoar omiljenih filmova!";
+
+                boolean toast = prefs.getBoolean( getString( R.string.toast_key ), false );
+                boolean notif = prefs.getBoolean( getString( R.string.notif_key ), false );
 
 
-            if (toast) {
-                Toast.makeText( DetailsActivity.this, tekstNotifikacije, Toast.LENGTH_LONG ).show();
+                if (toast) {
+                    Toast.makeText( DetailsActivity.this, tekstNotifikacije, Toast.LENGTH_LONG ).show();
 
+                }
+
+                if (notif) {
+                    showNotification( tekstNotifikacije );
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-            if (notif) {
-                showNotification( tekstNotifikacije );
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            startActivity( new Intent( this, OmiljeniActivity.class ) );
         }
-        startActivity( new Intent( this, OmiljeniActivity.class ) );
-
 
     }
 

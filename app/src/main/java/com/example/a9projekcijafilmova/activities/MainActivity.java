@@ -1,4 +1,4 @@
-package com.example.a9projekcijafilmova;
+package com.example.a9projekcijafilmova.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,6 +23,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.a9projekcijafilmova.R;
+import com.example.a9projekcijafilmova.adapters.SearchAdapter;
 import com.example.a9projekcijafilmova.dialog.AboutDialog;
 import com.example.a9projekcijafilmova.net.MyService;
 import com.example.a9projekcijafilmova.net.model1.Search;

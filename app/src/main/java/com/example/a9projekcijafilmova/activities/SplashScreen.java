@@ -1,4 +1,4 @@
-package com.example.a9projekcijafilmova;
+package com.example.a9projekcijafilmova.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.a9projekcijafilmova.R;
 
 import java.io.IOException;
 import java.io.InputStream;

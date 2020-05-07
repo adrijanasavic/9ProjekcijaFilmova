@@ -1,4 +1,4 @@
-package com.example.a9projekcijafilmova;
+package com.example.a9projekcijafilmova.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,21 +10,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.a9projekcijafilmova.net.model1.Search;
+import com.example.a9projekcijafilmova.R;
+import com.example.a9projekcijafilmova.db.model.Filmovi;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
+
+public class OmiljeniAdapter extends RecyclerView.Adapter<OmiljeniAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<Search> searchItem;
+    private List<Filmovi> filmItem;
     private OnItemClickListener listener;
 
 
-    public SearchAdapter(Context context, ArrayList<Search> searchItem, OnItemClickListener listener) {
+    public OmiljeniAdapter(Context context, List<Filmovi> film, OnItemClickListener listener) {
         this.context = context;
-        this.searchItem = searchItem;
+        this.filmItem = film;
         this.listener = listener;
     }
 
@@ -40,32 +42,33 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.tvNaziv.setText( searchItem.get( position ).getTitle() );
-        holder.tvGodina.setText( searchItem.get( position ).getYear() );
-        holder.tvType.setText( searchItem.get( position ).getType() );///
-        Picasso.with( context ).load( searchItem.get( position ).getPoster() ).into( holder.ivSlika );
-
+        holder.tvNaziv.setText( filmItem.get( position ).getmNaziv() );
+        holder.tvGodina.setText( filmItem.get( position ).getmGodina() );
+        holder.tvType.setText( filmItem.get( position ).getmJezik() );///
+        Picasso.with( context ).load( filmItem.get( position ).getmImage() ).into( holder.ivSlika );
 
     }
 
     @Override
     public int getItemCount() {
-        return searchItem.size();
+        return filmItem.size();
     }
 
-    public Search get(int position) {
-        return searchItem.get( position );
+    public Filmovi get(int position) {
+        return filmItem.get( position );
+    }
+
+    public void removeAll() {
+        filmItem.clear();
     }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
         private TextView tvNaziv;
         private TextView tvGodina;
         private TextView tvType;
         private ImageView ivSlika;
-
         private OnItemClickListener vhListener;
 
 
@@ -74,9 +77,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
             tvNaziv = itemView.findViewById( R.id.tvTitle );
             tvGodina = itemView.findViewById( R.id.tvYear );
-            tvType = itemView.findViewById( R.id.tvType );// proveriti ja sam dodala
+            tvType = itemView.findViewById( R.id.tvType );
             ivSlika = itemView.findViewById( R.id.ivPoster );
-
             this.vhListener = vhListener;
             itemView.setOnClickListener( this );
 
@@ -87,11 +89,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
             vhListener.onItemClick( getAdapterPosition() );
         }
 
-
     }
 
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
-
 }

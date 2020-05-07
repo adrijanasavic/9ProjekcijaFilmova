@@ -213,7 +213,49 @@
             android:layout_marginEnd="10dp"
             android:textSize="15sp"
             android:textStyle="italic"
-            tools:text="budyet" />
+            tools:text="budzet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textSize="15dp"
+            android:text="Upisite cenu karte u dinarima"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/details_cena"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:hint="Cena karte"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:text="Izaberite vreme projekcije"
+            android:textStyle="bold" />
+
+        <TimePicker
+            android:id="@+id/details_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp" />
+        <ImageButton
+            android:id="@+id/add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_add"/>
 
     </LinearLayout>
+
 </ScrollView>
+

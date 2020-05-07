@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OmiljeniActivity"></activity>
-        <activity android:name=".DetailsActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".activities.DetaljiOmiljeni"></activity>
+        <activity android:name=".activities.OmiljeniActivity" />
+        <activity android:name=".activities.DetailsActivity" />
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
